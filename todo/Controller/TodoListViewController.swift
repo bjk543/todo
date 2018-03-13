@@ -4,7 +4,9 @@
 //
 //  Created by shen cheer on 10/03/2018.
 //  Copyright © 2018 shen cheer. All rights reserved.
-//
+// chflags nohidden ~/Library
+// /Users/shencheer/Library/Developer/Xcode/DerivedData/Todoey-excnvjyqzsnyfeddlwrkomqafbtv/Build/Intermediates.noindex/Todoey.build/Debug-iphonesimulator/Todoey.build
+
 
 import UIKit
 
