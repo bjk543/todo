@@ -122,12 +122,7 @@ extension TodoListViewController:UISearchBarDelegate{
         
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         loadItems(with:request)
-//        do{
-//            itemArray = try context.fetch(request)
-//        }
-//        catch {
-//            print("loadItems\(error)")
-//        }
+
         
 //        todoItems = todoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
 //
@@ -136,15 +131,15 @@ extension TodoListViewController:UISearchBarDelegate{
     }
 //
 //
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if searchBar.text?.count == 0 {
-//            loadItems()
-//
-//            DispatchQueue.main.async {
-//                searchBar.resignFirstResponder()
-//            }
-//
-//        }
-//    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadItems()
+
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+
+        }
+    }
 }
 
