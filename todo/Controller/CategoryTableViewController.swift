@@ -34,6 +34,15 @@ class CategoryTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToItems", sender: self)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! TodoListViewController
+        if let index = tableView.indexPathForSelectedRow{
+            destinationVC.selectedCatogory = catogoryArray[index.row]
+        }
+    }
     @IBAction func cateBottumPress(_ sender: UIBarButtonItem) {
         var textfied = UITextField()
         let alert = UIAlertController(title: "add new item", message: "", preferredStyle: .alert)
