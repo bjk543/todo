@@ -95,16 +95,56 @@ class TodoListViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func loadItems()
+    func loadItems(with request:NSFetchRequest<Item> = Item.fetchRequest())
     {
-        let request : NSFetchRequest<Item> = Item.fetchRequest()
+        
         do{
          itemArray = try context.fetch(request)
         }
         catch {
             print("loadItems\(error)")
         }
+        
+        tableView.reloadData()
     }
     
+}
+
+extension TodoListViewController:UISearchBarDelegate{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+
+        
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
+        print(searchBar.text!)
+        //https://academy.realm.io/posts/nspredicate-cheatsheet/
+        //http://nshipster.com/nspredicate/
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        loadItems(with:request)
+//        do{
+//            itemArray = try context.fetch(request)
+//        }
+//        catch {
+//            print("loadItems\(error)")
+//        }
+        
+//        todoItems = todoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
+//
+//        tableView.reloadData()
+        
+    }
+//
+//
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        if searchBar.text?.count == 0 {
+//            loadItems()
+//
+//            DispatchQueue.main.async {
+//                searchBar.resignFirstResponder()
+//            }
+//
+//        }
+//    }
 }
 
